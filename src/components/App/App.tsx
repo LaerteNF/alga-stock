@@ -10,8 +10,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <TestComponent/>
-          <ClassComponent/>
+          <TestComponent name="Laerte"/>
+          <ClassComponent name="Laerte"/>
         </p>
         <a
           className="App-link"
