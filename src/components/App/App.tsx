@@ -12,7 +12,8 @@ function App() {
       <Header title="Algastock" />
       
       <Container>
-        <Table />
+        <Table 
+        />
 
       </Container>
 
