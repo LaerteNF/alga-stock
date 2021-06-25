@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Button from '../../shared/Button'
-import Form from '../../shared/Form/Form'
+import Form from '../../shared/Form'
 import Input from '../../shared/Input'
 
 const initialFormState = {
@@ -10,7 +10,17 @@ const initialFormState = {
     stock: ''
 }
 
-const ProductForm = () => {
+export interface ProductCreator {
+    name: string
+    price: number
+    stock: number
+}
+
+declare interface ProductFormProps{
+    onSubmit: (product: ProductCreator) => void
+}
+
+const ProductForm: React.FC<ProductFormProps> = (props) => {
     const [form, setForm] = useState(initialFormState)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,9 +32,21 @@ const ProductForm = () => {
         })
     }
 
-    return <Form>
+    const handleFormSubmit = () =>{
+        const productDto = {
+            name: String(form.name),
+            price: parseFloat(form.price),
+            stock: Number(form.stock)
+        }
+
+        props.onSubmit(productDto);
+        setForm(initialFormState)
+    }
+
+    return <Form onSubmit={handleFormSubmit}>
         <Input
             onChange={handleInputChange}
+            value={form.name}
             name="name"
             label="Name"
             placeholder="E.g.: Cookie"
@@ -32,6 +54,7 @@ const ProductForm = () => {
         />
         <Input
             onChange={handleInputChange}
+            value={form.price}
             name="price"
             label="Price"
             type="number"
@@ -41,8 +64,9 @@ const ProductForm = () => {
             required
         />
         <Input
-            name="stock"
             onChange={handleInputChange}
+            value={form.stock}        
+            name="stock"
             label="Stock"
             type="number"
             min="0"
