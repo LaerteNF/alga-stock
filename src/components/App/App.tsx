@@ -3,7 +3,7 @@ import Header from '../Header';
 import './App.css';
 import Container from '../../shared/Container';
 import Table, { TableHeader } from '../../shared/Table';
-import Products from '../../shared/Table/table.mockdata';
+import Products, { Product } from '../../shared/Table/table.mockdata';
 import ProductForm, { ProductCreator } from '../Products/ProductForm';
 import { useState } from 'react';
 
@@ -28,6 +28,14 @@ function App() {
     ])
   }
 
+  const handleProductUpdate = (newProduct: Product) => {
+    setProducts(products.map(product =>
+      product.id === newProduct.id
+        ? newProduct
+        : product
+    ))
+  }
+
   return (
     <div className="App">
       <Header title="Algastock" />
@@ -39,7 +47,9 @@ function App() {
         />
 
           <ProductForm 
+            form={products[0]}
             onSubmit={handleProductSubmit}
+            onUpdate={handleProductUpdate}
           />
       </Container>
 
