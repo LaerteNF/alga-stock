@@ -47,6 +47,10 @@ function App() {
         <Table 
           headers={headers}
           data={products}
+          enableActions={true}
+          onDelete={console.log}
+          onEdit={console.log}
+          onDetail={console.log}
         />
 
           <ProductForm 
