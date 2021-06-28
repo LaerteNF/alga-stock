@@ -22,6 +22,7 @@ declare interface TableProps{
 
 const Table: React.FC<TableProps> = (props) => {
     const [organizedData, indexedHeaders] = organizeData(props.data, props.headers)
+
     return <table className="AppTable">
         <thead>
             <tr>
@@ -49,10 +50,10 @@ const Table: React.FC<TableProps> = (props) => {
                         {
                             Object
                                 .keys(row)
-                                .map(item => 
+                                .map((item, i) => 
                                     item !== '$original'
                                         ? <td
-                                            key={row.$original.id + 1}
+                                            key={row.$original.id + i}
                                             className={indexedHeaders[item].right ? 'right' : ''}
                                         >
                                             { row[item] }
