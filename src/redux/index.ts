@@ -1,6 +1,6 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import Products from './Products/Products.reducer'
-import thunk from 'redux-thunk'
+import thunk, { ThunkAction} from 'redux-thunk'
 
 const reducers = combineReducers({
     products: Products
@@ -15,5 +15,13 @@ const store = createStore(
     )
     
 )
+
+export interface Action<T = any> {
+    type: string
+    payload?: T
+}
+
+export type Thunk<T = any> =
+    ThunkAction<void, typeof reducers, unknown, Action<T>>
 
 export default store
