@@ -1,19 +1,17 @@
 import React from 'react';
-import Header from '../Header';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css';
-import Container from '../../shared/Container';
-import ProductsCRUD from '../Products/ProductsCRUD';
+import HomeView from '../../views/HomeView';
 
 function App() {
 
   return (
     <div className="App">
-      <Header title="Algastock" />
-      
-      <Container>
-        <ProductsCRUD />
-      </Container>
-
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={HomeView} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
