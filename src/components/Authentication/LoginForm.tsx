@@ -1,17 +1,32 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2'
+import { login } from '../../redux/Authentication/Authentication.actions'
 import Button from '../../shared/Button'
 import Form from '../../shared/Form'
-import Input from '../../shared/Input'
+import Input from '../../shared/Input' 
 
 const LoginForm = () => {
+
+    const dispatch = useDispatch()
+
     const [form, setForm] = useState({
         user: '',
         pass: ''
     })
 
-    const handleLogin = () => {
-        console.table(form)
+    const handleLogin = async () => {
+        try{
+            console.log(form)
+            await dispatch(login(form))
+
+        }catch(err){
+            Swal.fire(
+                'Error', 
+                 err.response?.data?.message || err.message,
+                 'error')
+        }
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

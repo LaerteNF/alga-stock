@@ -1,5 +1,4 @@
 import React from 'react'
-import { isPropertySignature } from 'typescript'
 import Form from '../../shared/Form'
 import Input from '../../shared/Input'
 

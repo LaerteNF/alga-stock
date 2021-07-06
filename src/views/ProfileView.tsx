@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { isPropertySignature } from 'typescript'
 import ProfileCard, { User } from '../components/Authentication/ProfileCard'
 import Header from '../components/Header'
 import Container from '../shared/Container'
