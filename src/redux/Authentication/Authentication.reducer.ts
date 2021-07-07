@@ -10,6 +10,7 @@ export default function (state: AuthenticationState = {}, action: Action){
     switch (action.type){
         case 'AUTHENTICATION_LOGIN':
             return { profile: action.payload }
+            
         case 'AUTHENTICATION_LOGOUT':
             return {}
         default:
