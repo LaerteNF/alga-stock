@@ -17,14 +17,16 @@ const persistedReducer = persistReducer({
     blacklist: ['products']
 }, reducers)
 
+// filtra apenas os enhacers que existirem (quando a extensão não estiver instalado no browser)
+const enhancers = [
+    applyMiddleware(thunk),
+    // @ts-ignore
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+].filter(e => e)
+
 const store = createStore(
     persistedReducer,
-    compose(
-        applyMiddleware(thunk),
-        // @ts-ignore
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-    
+    compose(...enhancers)
 )
 
 const persistor = persistStore(store)
