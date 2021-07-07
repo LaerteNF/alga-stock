@@ -1,4 +1,3 @@
-import { string } from "yargs";
 import http from "../utils/http";
 
 export interface User{
